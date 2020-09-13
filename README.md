@@ -7,7 +7,7 @@ a simple bot that can help your presence
 3. BeautifulSoup
 
 # Installation
-1. clone this repo `https://github.com/share424/sixbot`
+1. clone this repo `git clone https://github.com/share424/sixbot`
 2. install the requirements `pip install requirements.txt`
 3. Done :)
 
