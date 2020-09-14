@@ -39,8 +39,29 @@ def check_course(session, course):
     print('lecturer:', lecturer)
     print('time:', time)
 
-    # check if class attendance has been set
-    if parsed_html.find('strong'):
-        print('Class attendance set at:', parsed_html.find('strong').decode_contents().strip())
+    # check if presence button exists
+    if parsed_html.find('form'):
+        action = parsed_html.find('form')['action']
+        button = parsed_html.find('button', attrs={'id': 'form_hadir'}) #btn_tidakhadir
+        if button is not None:
+            print('presence button exists, submit')
+            token = parsed_html.find('input', attrs={'id': 'form__token'})['value']
+            payload = {
+                'form[hadir]': '',
+                'form[returnTo]': action,
+                'form[_token]': token
+            }
+            response = session.post(f'https://akademik.itb.ac.id{action}', payload)
+            if response.status_code == 200:
+                print('Done :)')
+            else:
+                print('failed', response)
+        else:
+            print('you have been set the attendance')
+
     else:
-        print('Class attendance is not set')
+        # check if class attendance has been set
+        if parsed_html.find('strong'):
+            print('Class attendance set at:', parsed_html.find('strong').decode_contents().strip())
+        else:
+            print('Class attendance is not set')
