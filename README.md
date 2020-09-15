@@ -8,7 +8,7 @@ a simple bot that can help your presence
 
 # Installation
 1. clone this repo `git clone https://github.com/share424/sixbot`
-2. install the requirements `pip install requirements.txt`
+2. install the requirements `pip install -r requirements.txt`
 3. Done :)
 
 # How to use?
